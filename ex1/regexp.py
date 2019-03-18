@@ -7,7 +7,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--path', type=str, help='Path to text files with bills')
 args = parser.parse_args()
 
-pattern_1 = r'''(?i)ustaw(?:a(?:|mi|ch|)|y|o(?:|m)|ą|ie)\b\s+z\s+dnia\s+(\d{1,2})(?:\.)*\s+ # np. ustawa z dnia 23
+pattern_1 = r'''(?i)ustaw(?:|a(?:|mi|ch)|y|o(?:|m)|ą|ę|ie)\b\s+z\s+dnia\s+(\d{1,2})(?:\.)*\s+ # np. ustawa z dnia 23
                 (\w+)\s+ # np. grudnia
                 (\d{4})\s+r\.(?:\s|\W)*(.*|\s*) # np. 1998 r. o nazwie takiej a innej
                 (?=\s\()\s+\((?<=\()(?:Dz\.U\.\s+)((?:.|\s*)*)(?=\))\) # np. (Dz.U [...]) '''

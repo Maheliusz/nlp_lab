@@ -190,6 +190,7 @@ Journal year:1991		Journal position:131		Count:29
 Journal year:2001		Journal position:475		Count:29
 Journal year:1997		Journal position:443		Count:29
 Journal year:2000		Journal position:1191		Count:29
+Journal year:1997		Journal position:117		Count:28
 Journal year:1994		Journal position:406		Count:28
 Journal year:1992		Journal position:315		Count:28
 Journal year:1991		Journal position:332		Count:28
@@ -201,7 +202,6 @@ Journal year:1990		Journal position:318		Count:28
 Journal year:1993		Journal position:53		Count:28
 Journal year:2001		Journal position:509		Count:28
 Journal year:1999		Journal position:1256		Count:28
-Journal year:1997		Journal position:117		Count:27
 Journal year:1995		Journal position:478		Count:27
 Journal year:1997		Journal position:685		Count:27
 Journal year:1993		Journal position:34		Count:27
@@ -2178,6 +2178,7 @@ Journal year:1993		Journal position:498		Count:1
 Journal year:1995		Journal position:296		Count:1
 Journal year:1990		Journal position:154		Count:1
 Journal year:1994		Journal position:14		Count:1
+Journal year:1990		Journal position:648		Count:1
 Journal year:1994		Journal position:123		Count:1
 Journal year:1991		Journal position:593		Count:1
 Journal year:1991		Journal position:8		Count:1
