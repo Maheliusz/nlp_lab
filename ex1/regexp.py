@@ -20,7 +20,7 @@ pattern_1_inside_parentheses = r'''(?i)(?:(?:z\s+(\d+)\s+r\.\s+)? # np. z 1996 r
 pattern_2 = r'''(?:art\.\s+(\d+)(?:.)*\s+)? # np. art. 24 (...)
                 ust\.\s+(\d+) # np. ust. 123'''
 
-pattern_3 = r'''(?i)(ustaw(?:a(?:|mi|ch|)|y|o(?:|m)|ą|ie))\b'''
+pattern_3 = r'''(?i)(ustaw(?:a(?:|mi|ch)|y|o(?:|m)|ą|ę|ie))\b'''
 
 
 def open_directory(path):
@@ -83,6 +83,6 @@ def ex3(path):
     print("'Ustawa' counter: {}".format(counter))
 
 
-ex1(args.path)
-ex2(args.path)
+# ex1(args.path)
+# ex2(args.path)
 ex3(args.path)
