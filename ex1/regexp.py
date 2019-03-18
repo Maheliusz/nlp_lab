@@ -8,8 +8,7 @@ parser.add_argument('--path', type=str, help='Path to text files with bills')
 args = parser.parse_args()
 
 pattern_1 = r'''(?i)ustaw(?:a(?:|mi|ch|)|y|o(?:|m)|ą|ie)\b\s+z\s+dnia\s+(\d{1,2})\s+ # np. ustawa z dnia 23
-                (stycznia|lutego|marca|kwietnia|maja|czerwca|
-                lipca|sierpnia|września|października|listopada|grudnia)\s+ # np. grudnia
+                (\w+)\s+ # np. grudnia
                 (\d{4})\s+r\.(?:\s|\W)*(.*|\s*) # np. 1998 r. o nazwie takiej a innej
                 (?=\s\()\s+\((?<=\()(?:Dz\.U\.\s+)((?:.|\s*)*)(?=\))\) # np. (Dz.U [...]) '''
 
