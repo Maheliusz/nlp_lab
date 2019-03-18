@@ -7,19 +7,19 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--path', type=str, help='Path to text files with bills')
 args = parser.parse_args()
 
-pattern_1 = r'''(?i)ustaw(?:a(?:|mi|ch|)|y|o(?:|m)|ą|ie)\b\s+z\s+dnia\s+(\d{1,2})\s+ # np. ustawa z dnia 23
+pattern_1 = r'''(?i)ustaw(?:a(?:|mi|ch|)|y|o(?:|m)|ą|ie)\b\s+z\s+dnia\s+(\d{1,2})(?:\.)*\s+ # np. ustawa z dnia 23
                 (\w+)\s+ # np. grudnia
                 (\d{4})\s+r\.(?:\s|\W)*(.*|\s*) # np. 1998 r. o nazwie takiej a innej
                 (?=\s\()\s+\((?<=\()(?:Dz\.U\.\s+)((?:.|\s*)*)(?=\))\) # np. (Dz.U [...]) '''
 
 pattern_1_inside_parentheses = r'''(?i)(?:(?:z\s+(\d+)\s+r\.\s+)? # np. z 1996 r. 
-                                    Nr\s+(\d+)\,\s+ # np. Nr 23,
-                                    poz\.\s+(\d+)) # np. poz. 34'''
+                                    Nr\s+(\d+)(?:\.)*\,\s+ # np. Nr 23,
+                                    poz\.\s+(\d+)(?:\.)*) # np. poz. 34'''
 
-pattern_2 = r'''(?:art\.\s+(\d+)(?:.)*\s+)? # np. art. 24 (...)
-                ust\.\s+(\d+) # np. ust. 123'''
+pattern_2 = r'''(?:art\.\s+(\d+)(?:\.)*(?:.)*\s+)? # np. art. 24 (...)
+                ust\.\s+(\d+)(?:\.)* # np. ust. 123'''
 
-pattern_3 = r'''(?i)(ustaw(?:a(?:|mi|ch)|y|o(?:|m)|ą|ę|ie))\b'''
+pattern_3 = r'''\b(?i)(ustaw(?:|a(?:|mi|ch)|y|o(?:|m)|ą|ę|ie))\b'''
 
 
 def open_directory(path):
@@ -54,6 +54,7 @@ def ex1(path):
     count_list = list(count_dict.items())
     count_list.sort(key=lambda item: item[1], reverse=True)
     with open("ex1.txt", 'w+', encoding='utf-8') as file:
+        file.write("Exercise 1 results\n")
         for item in count_list:
             file.write("Journal year:{}\t\tJournal position:{}\t\tCount:{}\n".format(item[0][0], item[0][1], item[1]))
 
@@ -68,6 +69,7 @@ def ex2(path):
         print("{} parsed".format(filename))
     count_list.sort(key=lambda item: item[1], reverse=True)
     with open("ex2.txt", 'w+', encoding='utf-8') as file:
+        file.write("Exercise 2 results\n")
         for item in count_list:
             split_name = regex.split("\_|\.", item[0])
             file.write("Bill year:{}\t\tBill number:{}\t\tCount:{}\n".format(split_name[0], split_name[1], item[1]))
@@ -78,10 +80,13 @@ def ex3(path):
     counter = 0
     for filename in directory_contents:
         file_contents = read_file(path, filename)
-        counter += len(regex.findall(pattern_3, file_contents, flags=regex.IGNORECASE | regex.MULTILINE | regex.VERBOSE))
+        counter += len(
+            regex.findall(pattern_3, file_contents, flags=regex.IGNORECASE | regex.MULTILINE | regex.VERBOSE))
     print("'Ustawa' counter: {}".format(counter))
+    with open("ex3.txt", 'w+', encoding='utf-8') as file:
+        file.write("Exercise 3 result:\t{}\n".format(counter))
 
 
-# ex1(args.path)
-# ex2(args.path)
+ex1(args.path)
+ex2(args.path)
 ex3(args.path)
