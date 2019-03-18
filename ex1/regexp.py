@@ -13,7 +13,7 @@ pattern_1 = r'''(?i)ustaw(?:|a(?:|mi|ch)|y|o(?:|m)|ą|ę|ie)\b\s+z\s+dnia\s+(\d{
                 (?=\s\()\s+\((?<=\()(?:Dz\.\s*U\.\s+)((?:.|\s*)*)(?=\))\) # np. (Dz.U. [...]) '''
 
 pattern_1_inside_parentheses = r'''(?i)(?:(?:z\s+(\d+)\s+r\.\s+)? # np. z 1996 r. 
-                                    Nr\s+(\d+)(?:\.)*\,\s+ # np. Nr 23,
+                                    (?:Nr\s+(\d+)(?:\.)*\,\s+)? # np. Nr 23,
                                     poz\.\s+(\d+)(?:\.)*) # np. poz. 34'''
 
 pattern_2 = r'''(?:art\.\s+(\d+)(?:\.)*(?:.)*\s+)? # np. art. 24 (...)
