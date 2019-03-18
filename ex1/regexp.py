@@ -17,7 +17,7 @@ pattern_1_inside_parentheses = r'''(?i)(?:(?:z\s+(\d+)\s+r\.\s+)? # np. z 1996 r
                                     poz\.\s+(\d+)(?:\.)*) # np. poz. 34'''
 
 pattern_2 = r'''(?:art\.\s+(\d+)(?:\.)*(?:.)*\s+)? # np. art. 24 (...)
-                ust\.\s+(\d+)(?:\.)* # np. ust. 123'''
+                (?:ust\.|§)\s+(\d+)(?:\.)* # np. ust. 123'''
 
 pattern_3 = r'''\b(?i)(ustaw(?:|a(?:|mi|ch)|y|o(?:|m)|ą|ę|ie))\b'''
 
