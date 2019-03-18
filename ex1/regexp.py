@@ -10,7 +10,7 @@ args = parser.parse_args()
 pattern_1 = r'''(?i)ustaw(?:|a(?:|mi|ch)|y|o(?:|m)|ą|ę|ie)\b\s+z\s+dnia\s+(\d{1,2})(?:\.)*\s+ # np. ustawa z dnia 23
                 (\w+)\s+ # np. grudnia
                 (\d{4})\s+r\.(?:\s|\W)*(.*|\s*) # np. 1998 r. o nazwie takiej a innej
-                (?=\s\()\s+\((?<=\()(?:Dz\.U\.\s+)((?:.|\s*)*)(?=\))\) # np. (Dz.U [...]) '''
+                (?=\s\()\s+\((?<=\()(?:Dz\.\s*U\.\s+)((?:.|\s*)*)(?=\))\) # np. (Dz.U. [...]) '''
 
 pattern_1_inside_parentheses = r'''(?i)(?:(?:z\s+(\d+)\s+r\.\s+)? # np. z 1996 r. 
                                     Nr\s+(\d+)(?:\.)*\,\s+ # np. Nr 23,
