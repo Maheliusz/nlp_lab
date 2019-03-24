@@ -1,7 +1,8 @@
 import argparse
-import os
 
 import regex
+
+from utils.utils import open_directory, read_file
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--path', type=str, help='Path to text files with bills')
@@ -20,15 +21,6 @@ pattern_2 = r'''(?:art\.\s+(\d+)(?:\.)*(?:.)*\s+)? # np. art. 24 (...)
                 (?:ust\.|§)\s+(\d+)(?:\.)* # np. ust. 123'''
 
 pattern_3 = r'''\b(?i)(ustaw(?:|a(?:|mi|ch)|y|o(?:|m)|ą|ę|ie))\b'''
-
-
-def open_directory(path):
-    return os.listdir(path) if os.path.isdir(path) else [path]
-
-
-def read_file(path, filename):
-    with open(path + "/" + filename, 'r', encoding="utf-8") as file:
-        return file.read()
 
 
 def ex1(path):
