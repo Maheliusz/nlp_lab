@@ -23,7 +23,6 @@ if args.reset:
     ic.create(index=INDEX_NAME, body={
         "settings": {
             "analysis": {
-                "analyzer": "morfologik",
                 "filter": {
                     "synonyms": {
                         "type": "synonym",
@@ -35,15 +34,15 @@ if args.reset:
                         ]
                     }
                 },
-                "tokenizer": "standard",
-            }
-        },
-        "mappings": {
-            "text": {
-                "properties": {
-                    "text": {
-                        "type": "text",
-                        "analyzer": "morfologik"
+                "analyzer": {
+                    "custom_analyzer": {
+                        "type": "custom",
+                        "tokenizer": "standard",
+                        "filter": [
+                            "lowercase",
+                            "synonyms",
+                            "morfologik_stem"
+                        ]
                     }
                 }
             }
@@ -54,7 +53,8 @@ if args.reset:
     for filename in directory_contents:
         file_contents = read_file(args.path, filename)
         es.index(index=INDEX_NAME, doc_type=TYPE, id=filename, body={
-            "text": file_contents
+            "text": file_contents,
+            "analyzer": "custom_analyzer"
         })
         print(filename + " loaded")
 
