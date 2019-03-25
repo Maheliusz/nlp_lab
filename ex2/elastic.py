@@ -96,7 +96,7 @@ print("Number of legislative acts containing the words wchodzi w życie (in any 
 
 konstytucjas = sorted(es.search(index=INDEX_NAME, doc_type=TYPE, body={
     "query": {
-        "match_phrase": {
+        "match": {
             "text": {
                 "query": "konstytucja",
             }
@@ -106,6 +106,7 @@ konstytucjas = sorted(es.search(index=INDEX_NAME, doc_type=TYPE, body={
         "fields": {
             "text": {}
         },
+        "number_of_fragments": 3
     }
 })['hits']['hits'], key=lambda x: -x["_score"])[:10]
 print("Most relevant konstytucjas")
