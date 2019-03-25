@@ -46,6 +46,16 @@ if args.reset:
                     }
                 }
             }
+        },
+        "mappings": {
+            "text": {
+                "properties": {
+                    "text": {
+                        "type": "text",
+                        "analyzer": "custom_analyzer"
+                    }
+                }
+            }
         }
     }
               )
@@ -54,7 +64,6 @@ if args.reset:
         file_contents = read_file(args.path, filename)
         es.index(index=INDEX_NAME, doc_type=TYPE, id=filename, body={
             "text": file_contents,
-            "analyzer": "custom_analyzer"
         })
         print(filename + " loaded")
 
