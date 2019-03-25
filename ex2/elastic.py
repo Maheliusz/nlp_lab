@@ -39,9 +39,9 @@ if args.reset:
                         "type": "custom",
                         "tokenizer": "standard",
                         "filter": [
+                            "morfologik_stem",
                             "lowercase",
                             "synonyms",
-                            "morfologik_stem"
                         ]
                     }
                 }
@@ -82,7 +82,7 @@ print("Number of legislative acts containing the words kodeks postępowania cywi
       "but in an any inflection form:\t{}".format(
     es.search(index=INDEX_NAME, doc_type=TYPE, body={
         "query": {
-            "match": {
+            "match_phrase": {
                 "text": {
                     "query": "kodeks postępowania cywilnego",
                 }
