@@ -1,8 +1,6 @@
 import argparse
 
-from elasticsearch.client import IndicesClient, Elasticsearch
-
-from utils.utils import open_directory, read_file
+from utils.utils import initialize_elastic
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--path', type=str, help='Path to text files with bills', required=True)
@@ -13,59 +11,44 @@ args = parser.parse_args()
 INDEX_NAME = 'legislatives'
 TYPE = 'text'
 
-es = Elasticsearch([args.address])
-
-ic = IndicesClient(es)
-
-if args.reset:
-    if ic.exists(index=INDEX_NAME):
-        ic.delete(INDEX_NAME)
-    ic.create(index=INDEX_NAME, body={
-        "settings": {
-            "analysis": {
-                "filter": {
-                    "synonyms": {
-                        "type": "synonym",
-                        "synonyms": [
-                            "kpk => kodeks postępowania karnego",
-                            "kpc => kodeks postępowania cywilnego",
-                            "kk => kodeks karny",
-                            "kc => kodeks cywilny",
-                        ]
-                    }
-                },
-                "analyzer": {
-                    "custom_analyzer": {
-                        "type": "custom",
-                        "tokenizer": "standard",
-                        "filter": [
-                            "morfologik_stem",
-                            "lowercase",
-                            "synonyms",
-                        ]
-                    }
+es = initialize_elastic(address=args.address, path=args.path, reset=args.reset, settings={
+    "settings": {
+        "analysis": {
+            "filter": {
+                "synonyms": {
+                    "type": "synonym",
+                    "synonyms": [
+                        "kpk => kodeks postępowania karnego",
+                        "kpc => kodeks postępowania cywilnego",
+                        "kk => kodeks karny",
+                        "kc => kodeks cywilny",
+                    ]
+                }
+            },
+            "analyzer": {
+                "custom_analyzer": {
+                    "type": "custom",
+                    "tokenizer": "standard",
+                    "filter": [
+                        "morfologik_stem",
+                        "lowercase",
+                        "synonyms",
+                    ]
                 }
             }
-        },
-        "mappings": {
-            "text": {
-                "properties": {
-                    "text": {
-                        "type": "text",
-                        "analyzer": "custom_analyzer"
-                    }
+        }
+    },
+    "mappings": {
+        "text": {
+            "properties": {
+                "text": {
+                    "type": "text",
+                    "analyzer": "custom_analyzer"
                 }
             }
         }
     }
-              )
-    directory_contents = open_directory(args.path)
-    for filename in directory_contents:
-        file_contents = read_file(args.path, filename)
-        es.index(index=INDEX_NAME, doc_type=TYPE, id=filename, body={
-            "text": file_contents,
-        })
-        print(filename + " loaded")
+}, index_name=INDEX_NAME, doc_type=TYPE)
 
 print("Number of legislative acts containing the word ustawa (in any form):\t{}".format(
     es.search(index=INDEX_NAME, doc_type=TYPE, body={
