@@ -1,10 +1,13 @@
 import argparse
 from pprint import pprint
 
+import matplotlib.pyplot as plt
+
 from utils.utils import initialize_elastic, open_directory
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--path', type=str, help='Path to text files with bills', required=True)
+parser.add_argument('--dict_path', type=str, help='Path to text file with dictionary', required=True)
 parser.add_argument('--address', type=str, help='Address to send requests to', required=True)
 parser.add_argument('--reset', help='Should the indexes be reset', required=False, action="store_true")
 args = parser.parse_args()
@@ -43,6 +46,25 @@ frequencies = {}
 for entry in tmp_dict['docs']:
     term_vectors = entry['term_vectors']['text']['terms']
     for key, value in term_vectors.items():
-        if key.isalpha() and len(key) >= 2:
+        if key.isalpha():
             frequencies[key] = value['term_freq'] if key not in frequencies else frequencies[key] + value['term_freq']
-pprint(frequencies)
+frequencies = {k: v for k, v in frequencies.items() if v > 1}
+frequency_list = sorted(frequencies.values(), reverse=True)
+plt.semilogy(list(range(len(frequency_list))), frequency_list)
+plt.grid(True)
+plt.xlabel("rank of a term")
+plt.ylabel("number of occurrences")
+plt.show()
+
+non_appearing = {}
+with open(file=args.dict_path, mode="r", encoding="UTF-8") as dict_file:
+    dictionary = set([line.split(";")[0] for line in dict_file.readlines()])
+    for k, v in frequencies.items():
+        if k not in dictionary:
+            non_appearing[k] = v
+
+print("30 words with the highest ranks that do not belong to the dictionary")
+pprint(list(sorted(non_appearing.items(), key=lambda kv: kv[1], reverse=True))[:30])
+
+print("30 words with 3 occurrences that do not belong to the dictionary")
+pprint([entry for entry in sorted(non_appearing.items(), key=lambda kv: kv[0]) if entry[1] == 3][:30])
