@@ -51,7 +51,7 @@ for entry in tmp_dict['docs']:
             frequencies[key] = value['term_freq'] if key not in frequencies else frequencies[key] + value['term_freq']
 frequencies = {k: v for k, v in frequencies.items() if k.isalpha() and len(k) > 1}
 frequency_list = sorted(frequencies.values(), reverse=True)
-plt.semilogy(list(range(len(frequency_list))), frequency_list)
+plt.loglog(list(range(len(frequency_list))), frequency_list)
 plt.grid(True)
 plt.xlabel("rank of a term")
 plt.ylabel("number of occurrences")
@@ -67,11 +67,14 @@ with open(file=args.dict_path, mode="r", encoding="UTF-8") as dict_file:
 print("30 words with the highest ranks that do not belong to the dictionary")
 high_ranks = list(sorted(non_appearing.items(), key=lambda kv: kv[1], reverse=True))[:30]
 pprint(high_ranks)
+print()
 
 print("30 words with 3 occurrences that do not belong to the dictionary")
 three_occurences = [entry for entry in non_appearing.items() if entry[1] == 3][:30]
 pprint(three_occurences)
+print()
 
+print("Closest corrections")
 corrections = {}
 for entry in three_occurences:
     distance = {k: lev.distance(k, entry[0]) for k in dictionary}
