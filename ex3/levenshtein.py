@@ -1,8 +1,8 @@
 import argparse
 from pprint import pprint
 
-import matplotlib.pyplot as plt
 import Levenshtein as lev
+import matplotlib.pyplot as plt
 
 from utils.utils import initialize_elastic, open_directory
 
@@ -11,6 +11,8 @@ parser.add_argument('--path', type=str, help='Path to text files with bills', re
 parser.add_argument('--dict_path', type=str, help='Path to text file with dictionary', required=True)
 parser.add_argument('--address', type=str, help='Address to send requests to', required=True)
 parser.add_argument('--reset', help='Should the indexes be reset', required=False, action="store_true")
+parser.add_argument('--save_plot', help='Should the plot be saved as "frequency.png"', required=False,
+                    action="store_true")
 args = parser.parse_args()
 
 INDEX_NAME = 'legislatives'
@@ -55,7 +57,10 @@ plt.loglog(list(range(len(frequency_list))), frequency_list)
 plt.grid(True)
 plt.xlabel("rank of a term")
 plt.ylabel("number of occurrences")
-plt.show()
+if args.save_plot:
+    plt.savefig("frequency.png")
+else:
+    plt.show()
 
 non_appearing = {}
 with open(file=args.dict_path, mode="r", encoding="UTF-8") as dict_file:
