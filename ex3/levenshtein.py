@@ -2,6 +2,7 @@ import argparse
 from pprint import pprint
 
 import matplotlib.pyplot as plt
+import Levenshtein as lev
 
 from utils.utils import initialize_elastic, open_directory
 
@@ -48,7 +49,7 @@ for entry in tmp_dict['docs']:
     for key, value in term_vectors.items():
         if key.isalpha():
             frequencies[key] = value['term_freq'] if key not in frequencies else frequencies[key] + value['term_freq']
-frequencies = {k: v for k, v in frequencies.items() if v > 1}
+frequencies = {k: v for k, v in frequencies.items() if k.isalpha() and len(k) > 1}
 frequency_list = sorted(frequencies.values(), reverse=True)
 plt.semilogy(list(range(len(frequency_list))), frequency_list)
 plt.grid(True)
@@ -64,7 +65,15 @@ with open(file=args.dict_path, mode="r", encoding="UTF-8") as dict_file:
             non_appearing[k] = v
 
 print("30 words with the highest ranks that do not belong to the dictionary")
-pprint(list(sorted(non_appearing.items(), key=lambda kv: kv[1], reverse=True))[:30])
+high_ranks = list(sorted(non_appearing.items(), key=lambda kv: kv[1], reverse=True))[:30]
+pprint(high_ranks)
 
 print("30 words with 3 occurrences that do not belong to the dictionary")
-pprint([entry for entry in sorted(non_appearing.items(), key=lambda kv: kv[0]) if entry[1] == 3][:30])
+three_occurences = [entry for entry in non_appearing.items() if entry[1] == 3][:30]
+pprint(three_occurences)
+
+corrections = {}
+for entry in three_occurences:
+    distance = {k: lev.distance(k, entry[0]) for k in dictionary}
+    corrections[entry[0]] = min(distance.items(), key=lambda x: x[1])
+pprint(corrections)
