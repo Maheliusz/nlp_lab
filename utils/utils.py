@@ -1,4 +1,5 @@
 import os
+import regex as re
 
 from elasticsearch import Elasticsearch
 from elasticsearch.client import IndicesClient
@@ -16,9 +17,9 @@ def read_file(path, filename):
         return file.read()
 
 
-def initialize_elastic(address, path, settings, reset=True, index_name=INDEX_NAME, doc_type=TYPE, index_counter=False):
+def initialize_elastic(address, path, settings, index_name=INDEX_NAME, doc_type=TYPE, **kwargs):
     es = Elasticsearch([address])
-    if reset:
+    if kwargs['reset']:
         ic = IndicesClient(es)
         if ic.exists(index=index_name):
             ic.delete(index_name)
@@ -26,8 +27,9 @@ def initialize_elastic(address, path, settings, reset=True, index_name=INDEX_NAM
         directory_contents = open_directory(path)
         counter = 0
         for filename in directory_contents:
-            file_contents = read_file(path, filename)
-            index = counter if index_counter else filename
+            file_contents = re.sub(r'(?:[^\w\s])+', ' ', read_file(path, filename).lower().strip()) if kwargs[
+                'remove_non_alphanumeric'] else read_file(path, filename)
+            index = counter if kwargs['index_counter'] else filename
             es.index(index=index_name, doc_type=doc_type, id=index, body={
                 "text": file_contents,
             })
