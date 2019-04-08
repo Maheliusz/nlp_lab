@@ -1,8 +1,9 @@
 import argparse
 import math
+from collections import Counter
 from pprint import pprint
 
-import regex as re
+from res import llr  # https://github.com/tdunning/python-llr
 
 from utils.utils import initialize_elastic, open_directory
 
@@ -32,7 +33,7 @@ es = initialize_elastic(address=args.address, path=args.path, settings={
                     "filter": [
                         "lowercase",
                         "my_shingle_filter",
-                        "morfologik_stem",
+                        # "morfologik_stem",
                     ]
                 }
             }
@@ -71,6 +72,23 @@ def pmi(x, y, xy):
     return math.log(xy / (x * y))
 
 
-pointwise_mutual_information = {k: pmi(unigrams[k.split()[0]], unigrams[k.split()[1]], v) for k, v in
-                                bigrams.items()}
+unigrams_sum = sum(unigrams.values())
+bigrams_sum = sum(bigrams.values())
+pointwise_mutual_information = {
+    k: pmi(unigrams[k.split()[0]] / unigrams_sum, unigrams[k.split()[1]] / unigrams_sum, v / bigrams_sum)
+    for k, v in bigrams.items()}
+print('Pointwise mutual information')
 pprint(list(sorted(pointwise_mutual_information.items(), key=lambda kv: kv[1], reverse=True))[:30])
+
+diff = llr.llr_compare(Counter(bigrams), Counter(unigrams))
+print('Log likelihood ratio')
+pprint(list(sorted(diff.items(), key=lambda kv: kv[1], reverse=True))[:30])
+
+print("Which measure works better for the problem?")
+print("LLR > PMI")
+
+print('What would be needed, besides good measure, to build a dictionary of multiword expressions?')
+print()
+
+print('Can you identify a certain threshold which clearly divides the good expressions from the bad?)')
+print()
