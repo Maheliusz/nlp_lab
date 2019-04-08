@@ -4,13 +4,14 @@ from collections import Counter
 from pprint import pprint
 
 from res import llr  # https://github.com/tdunning/python-llr
-
 from utils.utils import initialize_elastic, open_directory
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--path', type=str, help='Path to text files with bills', required=True)
 parser.add_argument('--address', type=str, help='Address to send requests to', required=True)
 parser.add_argument('--reset', help='Should the indexes be reset', required=False, action="store_true")
+parser.add_argument('--save_to_file', help='Should the scores of n-grams be saved to file "scores.txt"', required=False,
+                    action="store_true")
 args = parser.parse_args()
 
 INDEX_NAME = 'legislatives'
@@ -77,18 +78,32 @@ bigrams_sum = sum(bigrams.values())
 pointwise_mutual_information = {
     k: pmi(unigrams[k.split()[0]] / unigrams_sum, unigrams[k.split()[1]] / unigrams_sum, v / bigrams_sum)
     for k, v in bigrams.items()}
+pmi_list = list(sorted(pointwise_mutual_information.items(), key=lambda kv: kv[1], reverse=True))
 print('Pointwise mutual information')
-pprint(list(sorted(pointwise_mutual_information.items(), key=lambda kv: kv[1], reverse=True))[:30])
+pprint(pmi_list[:30])
 
-diff = llr.llr_compare(Counter(bigrams), Counter(unigrams))
+if args.save_to_file:
+    with open("scores.txt", 'w', encoding='utf-8') as file:
+        file.write('\n'.join(str(line) for line in pmi_list))
+        file.write('\n')
+        for _ in range(0, 10):
+            file.write(''.join('-' for _ in range(0, 30)))
+            file.write('\n')
+
+llr_diff = llr.llr_compare(Counter(bigrams), Counter(unigrams))
+llr_diff_list = list(sorted(llr_diff.items(), key=lambda kv: kv[1], reverse=True))
 print('Log likelihood ratio')
-pprint(list(sorted(diff.items(), key=lambda kv: kv[1], reverse=True))[:30])
+pprint(llr_diff_list[:30])
 
-print("Which measure works better for the problem?")
-print("LLR > PMI")
+if args.save_to_file:
+    with open("scores.txt", 'a', encoding='utf-8') as file:
+        file.write('\n'.join(str(line) for line in llr_diff_list))
+
+print('Which measure works better for the problem?')
+print('\tLLR > PMI')
 
 print('What would be needed, besides good measure, to build a dictionary of multiword expressions?')
-print()
+print('\tLarge amount (or simply enough) of data')
 
-print('Can you identify a certain threshold which clearly divides the good expressions from the bad?)')
-print()
+print('Can you identify a certain threshold which clearly divides the good expressions from the bad?')
+print('\tNot really, it all depends on data provided')
