@@ -22,12 +22,7 @@ for filename in directory_contents:
                  and line.strip().split()[-1] == 'disamb'
                  and line.strip().split()[1] != 'interp']
         unigrams.update(Counter(lines))
-        for i in range(0, len(lines) - 1):
-            key = lines[i] + ' ' + lines[i + 1]
-            if key not in bigrams.keys():
-                bigrams[key] = 1
-            else:
-                bigrams[key] += 1
+        bigrams = Counter([lines[i] + ' ' + lines[i + 1] for i in range(0, len(lines) - 1)])
     print("{} parsed".format(filename))
 
 llr_diff = llr.llr_compare(Counter(bigrams), Counter(unigrams))
