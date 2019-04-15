@@ -1,5 +1,6 @@
 import argparse
 from collections import Counter
+from pprint import pprint
 
 from res import llr  # https://github.com/tdunning/python-llr
 from utils.utils import open_directory
@@ -40,3 +41,6 @@ if args.save_to_file:
         file.write('\n'.join(str(line) for line in llr_diff_list))
     with open("top50.txt", 'w', encoding='utf-8') as file:
         file.write('\n'.join(str(line) for line in llr_filtered))
+else:
+    print('LLR filtered')
+    pprint(llr_filtered)
