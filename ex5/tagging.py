@@ -4,6 +4,9 @@ from collections import Counter
 from res import llr  # https://github.com/tdunning/python-llr
 from utils.utils import open_directory
 
+noun_tags = ('subst', 'depr', 'num', 'numcol')
+adj_tags = ('adj', 'adja', 'adjp', 'adjc')
+
 parser = argparse.ArgumentParser()
 parser.add_argument('--path', type=str, help='Path to text files with processed (!) bills', required=True)
 parser.add_argument('--save_to_file', help='Should the scores of n-grams be saved to file "scores.txt"', required=False,
@@ -29,8 +32,8 @@ llr_diff = llr.llr_compare(Counter(bigrams), Counter(unigrams))
 llr_diff_list = list(sorted(llr_diff.items(), key=lambda kv: kv[1], reverse=True))
 llr_filtered = [el for el in llr_diff_list
                 if len(el[0].split()) > 1
-                and el[0].split()[0].split(":")[1] == 'subst'
-                and el[0].split()[1].split(":")[1] in ('subst', 'adj')][:50]
+                and el[0].split()[0].split(":")[1] in noun_tags
+                and el[0].split()[1].split(":")[1] in noun_tags + adj_tags][:50]
 
 if args.save_to_file:
     with open("scores.txt", 'w', encoding='utf-8') as file:
