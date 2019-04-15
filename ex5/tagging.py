@@ -1,6 +1,5 @@
 import argparse
 from collections import Counter
-from pprint import pprint
 
 from res import llr  # https://github.com/tdunning/python-llr
 from utils.utils import open_directory
@@ -33,9 +32,13 @@ for filename in directory_contents:
 
 llr_diff = llr.llr_compare(Counter(bigrams), Counter(unigrams))
 llr_diff_list = list(sorted(llr_diff.items(), key=lambda kv: kv[1], reverse=True))
-print('Log likelihood ratio')
-pprint(llr_diff_list[:30])
+llr_filtered = [el for el in llr_diff_list
+                if len(el[0].split()) > 1
+                and el[0].split()[0].split(":")[1] == 'subst'
+                and el[0].split()[1].split(":")[1] in ('subst', 'adj')][:50]
 
 if args.save_to_file:
     with open("scores.txt", 'w', encoding='utf-8') as file:
         file.write('\n'.join(str(line) for line in llr_diff_list))
+    with open("top50.txt", 'w', encoding='utf-8') as file:
+        file.write('\n'.join(str(line) for line in llr_filtered))
