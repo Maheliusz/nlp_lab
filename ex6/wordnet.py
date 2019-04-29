@@ -101,8 +101,8 @@ def ex7(ingroup_1, ingroup_2):
     plt.show()
 
 
-# ex7(group_1_1, group_1_2)
-# ex7(group_2_1, group_2_2)
+ex7(group_1_1, group_1_2)
+ex7(group_2_1, group_2_2)
 
 
 # 8
