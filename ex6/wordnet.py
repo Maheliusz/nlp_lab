@@ -3,10 +3,9 @@ import itertools
 import matplotlib.pyplot as plt
 import networkx as nx
 import requests
-from nltk.corpus import wordnet as wn
 
 api_address = "http://api.slowosiec.clarin-pl.eu:80/plwordnet-api/"
-"""
+# """
 # 3
 in_word = "szkoda"
 print(in_word)
@@ -57,8 +56,9 @@ for sense in filter(lambda data: data['senseNumber'] == 1, response.json()["cont
                                              subhip['synsetTo']['id'])).json())))
                 for subitem in subto:
                     print("\t\t" + subitem)
-"""
 
+
+# """
 # 7
 def group(intake, meaning_nr):
     result = {}
@@ -104,5 +104,20 @@ def ex7(ingroup_1, ingroup_2):
 # ex7(group_1_1, group_1_2)
 # ex7(group_2_1, group_2_2)
 
+
 # 8
-print(wn.synsets('szkoda', lang='pol'))
+# print(wn.synsets('szkoda', lang='pol'))
+def get_sense(in_word, sense_nr):
+    filtered = list(filter(lambda data: data['senseNumber'] == sense_nr,
+                           requests.get(url=api_address + "senses/search",
+                                        params={"lemma": in_word}).json()["content"]))
+    return requests.get(url=api_address + 'senses/{}/synset'.format(filtered[0]['id'])).json()['id'] \
+        if len(filtered) > 0 else None
+
+
+szkoda = get_sense('szkoda', 2)
+wypadek = get_sense('wypadek', 1)
+kolizja = get_sense('kolizja', 2)
+szkoda_m = get_sense('szkoda majątkowa', 1)
+nieszczescie = get_sense('nieszczęście', 2)
+katastrofa = get_sense('katastrofa budowlana', 1)
