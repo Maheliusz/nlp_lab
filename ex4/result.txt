@@ -1,0 +1,46 @@
+Pointwise mutual information
+("[('czynnościami egzekucyjnymi', 12.473432252087575), ('pro gnozowanego', "
+ "12.473432252087575), ('rewirami komorniczymi', 12.473432252087575), "
+ "('sprawoz dania', 12.473432252087575), ('sędziemu wizytatorowi', "
+ "12.473432252087575), ('budowlanej zawierającej', 12.473432252087575), "
+ "('rozłożona najwyżej', 12.473432252087575), ('rzeczoznawcę majątkowego', "
+ "12.473432252087575), ('sady rejonowe', 12.473432252087575), ('samotnie "
+ "wychowująca', 12.473432252087575), ('nasuwających przypuszczenie', "
+ "12.473432252087575), ('celową przeznaczoną', 12.473432252087575), "
+ "('przebudowy remontu', 12.473432252087575), ('miara przyjęta', "
+ "12.473432252087575), ('obok szpitala', 12.473432252087575), ('osobodzień "
+ "wyrażających', 12.473432252087575), ('porada osobodzień', "
+ "12.473432252087575), ('poradni przyszpitalnej', 12.473432252087575), "
+ "('poradnia przyszpitalna', 12.473432252087575), ('przyszpitalna "
+ "ambulatorium', 12.473432252087575), ('ratownictwa medycznego', "
+ "12.473432252087575), ('ratownictwie medycznym', 12.473432252087575), "
+ "('zapewniającą kontynuację', 12.473432252087575), ('zbliżone rodzajowo', "
+ "12.473432252087575), ('charakterystyki toksykologicznej', "
+ "12.473432252087575), ('dołączonej ulotce', 12.473432252087575), "
+ "('jednostkowym zewnętrznym', 12.473432252087575), ('kombinacje testowane', "
+ "12.473432252087575), ('kompozycje zapachowe', 12.473432252087575), "
+ "('najlepiej zużyć', 12.473432252087575)]")
+
+Log likelihood ratio
+("[('mowa w', 56.9823269458148), ('w art', 54.50428729649084), ('ust 1', "
+ "48.03310378930817), ('w ust', 44.276690187302066), ('r nr', "
+ "40.104194631938185), ('których mowa', 37.30117109540025), ('o których', "
+ "37.30117109540025), ('z dnia', 37.28252727891364), ('o którym', "
+ "33.82195478727665), ('którym mowa', 33.82195478727665), ('dz u', "
+ "32.58727802686467), ('r o', 31.304155412266567), ('otrzymuje brzmienie', "
+ "30.220257913210666), ('w brzmieniu', 29.381204605675517), ('ust 2', "
+ "29.000528412031116), ('i nr', 28.07581377645259), ('u z', "
+ "27.627025201345457), ('w przypadku', 26.965632664762587), ('której mowa', "
+ "26.706902872979562), ('o której', 26.706902872979562), ('na podstawie', "
+ "26.419382136557402), ('dodaje się', 25.537459068994842), ('1 pkt', "
+ "25.401170503019596), ('od dnia', 24.511031778562007), ('do spraw', "
+ "24.22617366202703), ('ustawy z', 24.22617366202703), ('w zakresie', "
+ "24.08248409176274), ('1 w', 24.02476819451115), ('w tym', 23.8507844580738), "
+ "('ust 3', 23.498961655328127)]")
+
+Which measure works better for the problem?
+	LLR > PMI
+What would be needed, besides good measure, to build a dictionary of multiword expressions?
+	Large amount (or simply enough) of data
+Can you identify a certain threshold which clearly divides the good expressions from the bad?
+	Not really, it all depends on data provided
