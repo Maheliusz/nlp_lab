@@ -9,9 +9,9 @@ szkoda
 wypadek
 	zdarzenie oceniane negatywnie
 		wypadek
-		historia
 		wydarzenie
 		zdarzenie
+		historia
 		zdarzenie oceniane negatywnie
 		zdarzenie oceniane negatywnie
 		zdarzenie oceniane negatywnie
@@ -99,144 +99,144 @@ wypadek
 	wypadek komunikacyjny
 		wypadek
 		wypadek komunikacyjny
-	traf
-		wypadek
-		historia
-		wydarzenie
-		zdarzenie
-		zbieg okolicznoœci
-		splot wydarzeñ
-		casus
-		przypadek
-		kazus
-		zrz¹dzenie losu
-		traf
-		casus
-		przypadek
-		kazus
-		zrz¹dzenie losu
-		traf
-		casus
-		przypadek
-		kazus
-		zrz¹dzenie losu
-		traf
-		casus
-		przypadek
-		kazus
-		zrz¹dzenie losu
-		traf
 	przypadek
 		wypadek
-		historia
 		wydarzenie
 		zdarzenie
-		zbieg okolicznoœci
-		splot wydarzeñ
+		historia
+		zbieg okolicznoÅ›ci
+		splot wydarzeÅ„
 		casus
 		przypadek
-		kazus
-		zrz¹dzenie losu
 		traf
+		zrzÄ…dzenie losu
+		kazus
 		casus
 		przypadek
-		kazus
-		zrz¹dzenie losu
 		traf
+		zrzÄ…dzenie losu
+		kazus
 		casus
 		przypadek
-		kazus
-		zrz¹dzenie losu
 		traf
+		zrzÄ…dzenie losu
+		kazus
 		casus
 		przypadek
-		kazus
-		zrz¹dzenie losu
 		traf
-	kazus
+		zrzÄ…dzenie losu
+		kazus
+	traf
 		wypadek
-		historia
 		wydarzenie
 		zdarzenie
-		zbieg okolicznoœci
-		splot wydarzeñ
-		casus
-		przypadek
-		kazus
-		zrz¹dzenie losu
-		traf
-		casus
-		przypadek
-		kazus
-		zrz¹dzenie losu
-		traf
-		casus
-		przypadek
-		kazus
-		zrz¹dzenie losu
-		traf
-		casus
-		przypadek
-		kazus
-		zrz¹dzenie losu
-		traf
-	zrz¹dzenie losu
-		wypadek
 		historia
-		wydarzenie
-		zdarzenie
-		zbieg okolicznoœci
-		splot wydarzeñ
+		zbieg okolicznoÅ›ci
+		splot wydarzeÅ„
 		casus
 		przypadek
-		kazus
-		zrz¹dzenie losu
 		traf
+		zrzÄ…dzenie losu
+		kazus
 		casus
 		przypadek
-		kazus
-		zrz¹dzenie losu
 		traf
+		zrzÄ…dzenie losu
+		kazus
 		casus
 		przypadek
-		kazus
-		zrz¹dzenie losu
 		traf
+		zrzÄ…dzenie losu
+		kazus
 		casus
 		przypadek
-		kazus
-		zrz¹dzenie losu
 		traf
+		zrzÄ…dzenie losu
+		kazus
 	casus
 		wypadek
-		historia
 		wydarzenie
 		zdarzenie
-		zbieg okolicznoœci
-		splot wydarzeñ
+		historia
+		zbieg okolicznoÅ›ci
+		splot wydarzeÅ„
 		casus
 		przypadek
-		kazus
-		zrz¹dzenie losu
 		traf
+		zrzÄ…dzenie losu
+		kazus
 		casus
 		przypadek
-		kazus
-		zrz¹dzenie losu
 		traf
+		zrzÄ…dzenie losu
+		kazus
 		casus
 		przypadek
-		kazus
-		zrz¹dzenie losu
 		traf
+		zrzÄ…dzenie losu
+		kazus
 		casus
 		przypadek
-		kazus
-		zrz¹dzenie losu
 		traf
-	potkniêcie
+		zrzÄ…dzenie losu
+		kazus
+	kazus
+		wypadek
+		wydarzenie
+		zdarzenie
+		historia
+		zbieg okolicznoÅ›ci
+		splot wydarzeÅ„
+		casus
+		przypadek
+		traf
+		zrzÄ…dzenie losu
+		kazus
+		casus
+		przypadek
+		traf
+		zrzÄ…dzenie losu
+		kazus
+		casus
+		przypadek
+		traf
+		zrzÄ…dzenie losu
+		kazus
+		casus
+		przypadek
+		traf
+		zrzÄ…dzenie losu
+		kazus
+	zrzÄ…dzenie losu
+		wypadek
+		wydarzenie
+		zdarzenie
+		historia
+		zbieg okolicznoÅ›ci
+		splot wydarzeÅ„
+		casus
+		przypadek
+		traf
+		zrzÄ…dzenie losu
+		kazus
+		casus
+		przypadek
+		traf
+		zrzÄ…dzenie losu
+		kazus
+		casus
+		przypadek
+		traf
+		zrzÄ…dzenie losu
+		kazus
+		casus
+		przypadek
+		traf
+		zrzÄ…dzenie losu
+		kazus
+	potkniÄ™cie
 		wtopa
 		wpadka
-		potkniêcie
-('strata', 'uszczerbek', 'szkoda maj¹tkowa', 'uszczerbek na zdrowiu', 'krzywda', ' niesprawiedliwoœæ', 'szkoda', 'nieszczêœcie')
+		potkniÄ™cie
+('strata', 'uszczerbek', 'szkoda majÄ…tkowa', 'uszczerbek na zdrowiu', 'krzywda', ' niesprawiedliwoÅ›Ä‡', 'szkoda', 'nieszczÄ™Å›cie')
 ('wypadek', 'wypadek komunikacyjny', 'kolizja drogowa', 'katastrofa budowlana', 'wypadek drogowy', 'kolizja', 'zderzenie', 'bezkolizyjny')

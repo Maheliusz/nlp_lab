@@ -7,7 +7,7 @@ import requests
 api_address = "http://api.slowosiec.clarin-pl.eu:80/plwordnet-api/"
 # """
 # 3
-result_file = open('result.txt', 'w')
+result_file = open('result.txt', 'w', encoding='utf-8')
 in_word = "szkoda"
 print(in_word)
 result_file.write(in_word + '\n')
