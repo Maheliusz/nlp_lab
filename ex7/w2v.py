@@ -71,7 +71,6 @@ result_file.write(str(computed_result))
 result_file.write("\n")
 
 print("# 5")
-result_file.write("# 5\n")
 wordlist = (
     'szkoda::noun',
     'strata::noun',
@@ -95,6 +94,7 @@ random_vectors = list(map(lambda x: wv.get_vector(x), random.sample(list(wv.voca
 processed = TSNE(n_components=2).fit_transform(highlights + random_vectors)
 
 plt.figure(figsize=(10, 10))
+plt.title('# 5')
 plt.scatter(processed[:len(highlights), 0], processed[:len(highlights), 1])
 plt.scatter(processed[len(highlights):, 0], processed[len(highlights):, 1])
 plt.savefig('tsne.png')
