@@ -1,0 +1,19 @@
+# 3
+sąd::noun wysoki::adj:		[('niski::adj', 0.8020479679107666)]
+trybunał::noun konstytucyjny::adj:		[('władza_sądownicza::noun', 0.839540958404541)]
+kodeks::noun cywilny::adj:		[('przepis::noun', 0.7248944044113159)]
+kpk::noun:		[('ne#Kodeksu_postępowania_karnego::noun', 0.8661121129989624)]
+sąd::noun rejonowy::adj:		[('sąd_okręgowy::noun', 0.8236081600189209)]
+szkoda::noun:		[('wyrządzić::verb', 0.7564010620117188)]
+wypadek::noun:		[('przypadek::noun', 0.8552336692810059)]
+kolizja::noun:		[('kolizja_drogowa::noun', 0.8072466850280762)]
+szkoda::noun majątkowy::adj:		[('wyrządzo::noun', 0.7681843638420105)]
+nieszczęście::noun:		[('niebezpieczeństwo::noun', 0.7715556621551514)]
+rozwód::noun:		[('małżeństwo::noun', 0.8230218291282654)]
+# 4
+sąd wysoki - kpc + konstytucja
+[('wysoki::adj', 0.773125410079956), ('sąd::noun', 0.7562299966812134), ('rząd::noun', 0.7304977178573608), ('niski::adj', 0.7043129801750183), ('władza::noun', 0.6805161237716675)]
+pasażer - mężczyzna + kobieta
+[('pasażer::noun', 0.9536111354827881), ('podróżny::noun', 0.8415740728378296), ('współpasażer::noun', 0.7920055389404297), ('podróżujący::noun', 0.7550978064537048), ('kierowca::noun', 0.7446857690811157)]
+samochód - droga + rzeka
+[('motorówka::noun', 0.7439929842948914), ('jezioro::noun', 0.7345261573791504), ('Łódź::noun', 0.7254728078842163), ('rzeka::noun', 0.7248799800872803), ('ne#Helensburgha::noun', 0.7246426343917847)]
