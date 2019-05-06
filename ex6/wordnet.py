@@ -7,15 +7,19 @@ import requests
 api_address = "http://api.slowosiec.clarin-pl.eu:80/plwordnet-api/"
 # """
 # 3
+result_file = open('result.txt', 'w')
 in_word = "szkoda"
 print(in_word)
+result_file.write(in_word + '\n')
 response = requests.get(url=api_address + "senses/search", params={"lemma": in_word, "partOfSpeech": "noun"})
 for sense in response.json()["content"]:
     print('\t' + sense['domain']['description'])
+    result_file.write('\t' + sense['domain']['description'] + '\n')
     synset_id = requests.get(url=api_address + 'senses/{}/synset'.format(sense['id']))
     synset = requests.get(url=api_address + 'synsets/{}/senses'.format(synset_id.json()['id']))
     for synonym in synset.json():
         print('\t\t' + synonym['lemma']['word'])
+        result_file.write('\t\t' + synonym['lemma']['word'] + '\n')
 
 # 4
 in_word = "wypadek drogowy"
@@ -33,11 +37,12 @@ for sense in filter(lambda data: data['senseNumber'] == 1, response.json()["cont
         G.add_nodes_from(_to)
         G.add_edges_from(itertools.product(_from, _to))
 nx.draw(G, with_labels=True)
-plt.show()
+plt.savefig('4.png')
 
 # 5, 6
 in_word = "wypadek"
 print(in_word)
+result_file.write(in_word + '\n')
 response = requests.get(url=api_address + "senses/search", params={"lemma": in_word})
 for sense in filter(lambda data: data['senseNumber'] == 1, response.json()["content"]):
     synset_id = requests.get(url=api_address + 'senses/{}/synset'.format(sense['id']))
@@ -47,6 +52,7 @@ for sense in filter(lambda data: data['senseNumber'] == 1, response.json()["cont
                            requests.get(url=api_address + 'synsets/{}/senses'.format(hip['synsetTo']['id'])).json())))
         for item in _to:
             print("\t" + item[1])
+            result_file.write("\t" + item[1] + '\n')
             subsynset_id = requests.get(url=api_address + 'senses/{}/synset'.format(item[0]))
             subrelations = requests.get(url=api_address + 'synsets/{}/relations'.format(subsynset_id.json()['id']))
             for subhip in filter(lambda data: data['relation']['name'] == 'hiponimia', subrelations.json()):
@@ -56,6 +62,7 @@ for sense in filter(lambda data: data['senseNumber'] == 1, response.json()["cont
                                              subhip['synsetTo']['id'])).json())))
                 for subitem in subto:
                     print("\t\t" + subitem)
+                    result_file.write("\t\t" + subitem + '\n')
 
 
 # """
@@ -92,17 +99,20 @@ def ex7(ingroup_1, ingroup_2):
     G = nx.DiGraph()
     G.add_nodes_from(ingroup_1 + ingroup_2)
     print(ingroup_1 + ingroup_2)
+    result_file.write(str(ingroup_1 + ingroup_2) + '\n')
     grouped = group(ingroup_1, 1)
     grouped.update(group(ingroup_2, 2))
     edge_labels = create_graph(grouped, G)
     pos = nx.circular_layout(G)
     nx.draw_networkx_edge_labels(G, pos=pos, edge_labels=edge_labels, arrowstyle='->')
     nx.draw_networkx(G, pos=pos, with_labels=True)
-    plt.show()
 
 
 ex7(group_1_1, group_1_2)
+plt.savefig('7_1.png')
+plt.close()
 ex7(group_2_1, group_2_2)
+plt.savefig('7_2.png')
 
 
 # 8
