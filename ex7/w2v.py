@@ -1,11 +1,10 @@
 import argparse
 import random
-from pprint import pprint
 
+import matplotlib.pyplot as plt
+import numpy as np
 from gensim.models import KeyedVectors
 from gensim.test.utils import datapath
-import numpy as np
-import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
 
 parser = argparse.ArgumentParser()
