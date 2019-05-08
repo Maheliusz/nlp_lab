@@ -36,7 +36,7 @@ ex3_input = (
 print("# 3")
 result_file.write("# 3\n")
 for word in ex3_input:
-    closest = "{}:\t\t{}".format(word, wv.most_similar(positive=word.split(), topn=1))
+    closest = "{}:\t\t{}".format(word, wv.most_similar(positive=word.split(), topn=5))
     print(closest)
     result_file.write(closest + "\n")
 
