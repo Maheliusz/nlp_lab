@@ -1,0 +1,47 @@
+SVM full-text
+             precision    recall  f1-score   support
+
+    changed       0.90      0.89      0.90       130
+     normal       0.87      0.88      0.87       106
+
+avg / total       0.89      0.89      0.89       236
+
+SVM 10% of text
+             precision    recall  f1-score   support
+
+    changed       0.80      0.66      0.72       130
+     normal       0.66      0.79      0.72       106
+
+avg / total       0.73      0.72      0.72       236
+
+SVM 10 lines
+             precision    recall  f1-score   support
+
+    changed       0.69      0.85      0.76       130
+     normal       0.74      0.52      0.61       106
+
+avg / total       0.71      0.70      0.69       236
+
+SVM 1 line
+             precision    recall  f1-score   support
+
+    changed       0.55      1.00      0.71       130
+     normal       1.00      0.01      0.02       106
+
+avg / total       0.75      0.56      0.40       236
+
+FastText full
+Precision		Recall		F1
+0.77108		0.77108		0.77108
+
+FastText 10% of text
+Precision		Recall		F1
+0.64516		0.64516		0.64516
+
+FastText 10 lines 
+Precision		Recall		F1
+0.68657		0.68657		0.68657
+
+FastText 1 line 
+Precision		Recall		F1
+0.65385		0.65385		0.65385
