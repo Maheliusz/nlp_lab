@@ -30,18 +30,27 @@ SVM 1 line
 
 avg / total       0.75      0.56      0.40       236
 
+-----------------------------------------------
+normal - changed
+
 FastText full
-Precision		Recall		F1
-0.77108		0.77108		0.77108
+Precision                   Recall                      F1
+[0.8089172  0.96202532]		[0.97692308 0.71698113]		[0.88501742 0.82162162]
 
 FastText 10% of text
-Precision		Recall		F1
-0.64516		0.64516		0.64516
+Precision		            Recall		                F1
+[0.75       0.48039216]		[0.18461538 0.9245283 ]		[0.2962963  0.63225806]
 
 FastText 10 lines 
 Precision		Recall		F1
-0.68657		0.68657		0.68657
+[0.49222798 0.74418605]		[0.89622642 0.24615385]		[0.63545151 0.3699422 ]
 
 FastText 1 line 
 Precision		Recall		F1
-0.65385		0.65385		0.65385
+[0.48677249 0.70212766]		[0.86792453 0.25384615]		[0.62372881 0.37288136]
+
+----------------------------------------------
+
+Flair 1 line
+changed    precision: 0.0000 - recall: 0.0000 - accuracy: 0.0000 - f1-score: 0.0000
+normal     precision: 0.4717 - recall: 1.0000 - accuracy: 0.4717 - f1-score: 0.6410
