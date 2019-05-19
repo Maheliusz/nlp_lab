@@ -1,6 +1,8 @@
 import argparse
 import os
 import xml.etree.ElementTree as ET
+from textwrap import wrap
+
 import matplotlib.pyplot as plt
 
 parser = argparse.ArgumentParser()
@@ -41,13 +43,12 @@ for filename in already_parsed:
                 coarse[general_tag].extend(list(subdict.values()))
 
     print('{} processed'.format(filename))
-    print('{} unique fine tags found'.format(len(fine)))
-fig, axs = plt.subplots(2, 1)
-axs[0].hist(list(fine.values()), label=list(fine.keys()))
-axs[1].hist(list(coarse.values()), label=list(coarse.keys()))
+fig, axs = plt.subplots(2, 1, figsize=(10,30))
+axs[0].bar(list(fine.keys()), list(map(lambda x: len(x), fine.values())))
+axs[1].bar(list(coarse.keys()), list(map(lambda x: len(x), coarse.values())))
 for tag in fine.keys():
     print('{}\t\t{}'.format(tag, len(fine[tag])))
 for tag in coarse.keys():
     print('{}\t\t{}'.format(tag, len(coarse[tag])))
-# fig.savefig('res.png')
-plt.show()
+axs[0].tick_params(labelrotation=90)
+fig.savefig('histograms.png')
