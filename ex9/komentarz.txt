@@ -1,0 +1,2 @@
+Wyniki wydają się być prawidłowe - najpopularniejszą frazą jest "Dz.U." (aczkolwiek tłumaczona jest przez silnik na "Dzieje Apostolskie").
+NER poprawnie zidentyfikował wiele encji w prosty do użytkowania sposób, więc jest przydatnym narzędziem.
