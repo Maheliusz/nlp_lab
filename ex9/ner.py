@@ -63,4 +63,8 @@ coarse_counter = sorted(coarse_counter, key=lambda elem: elem[0], reverse=True)
 with open('top50.txt', 'w', encoding='utf-8') as file:
     file.write('\n'.join(map(lambda x: str(x), fine_counter[:50])))
 with open('top10.txt', 'w', encoding='utf-8') as file:
-    file.write('\n'.join(map(lambda x: str(x), coarse_counter[:10])))
+    for tag in coarse.keys():
+        file.write('\n' + tag + '\n')
+        file.write('\n'.join(map(lambda x: str(x),
+                                 sorted(list(Counter(coarse[tag]).items())[:10], key=lambda elem: elem[1],
+                                        reverse=True))))
